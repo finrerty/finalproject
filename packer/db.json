@@ -3,8 +3,8 @@
         {
             "type": "googlecompute",
             "project_id": "{{user `project_id`}}",
-            "image_name": "ui-server-{{timestamp}}",
-            "image_family": "ui-server",
+            "image_name": "search-engine-db-{{timestamp}}",
+            "image_family": "search-engine-db",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "europe-west1-b",
             "ssh_username": "vlad",
@@ -15,5 +15,13 @@
             "network": "default",
 	        "tags": "{{user `type`}}"
         }
-    ]
+    ],
+    "provisioners": [
+        {
+          "type": "ansible",
+          "playbook_file": "ansible/playbooks/packer_db.yml",
+          "extra_arguments": ["--tags","mongo"],
+          "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"]
+        }
+    ] 
 }
