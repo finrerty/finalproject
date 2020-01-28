@@ -1,0 +1,16 @@
+plugin: gcp_compute
+projects:
+  - finalproject-266411
+zones:
+  - europe-west1-b
+groups:
+  app: "'search-engine' in name"
+  db: "'search-engine' in name"
+filters: []
+auth_kind: serviceaccount
+service_account_file: "/home/vlad/.gcp/finalproject-266411-0b708c640aa7.json"
+hostnames:
+  - name
+compose:
+  ip: networkInterfaces[0].networkIP
+  ansible_host: networkInterfaces[0].accessConfigs[0].natIP
