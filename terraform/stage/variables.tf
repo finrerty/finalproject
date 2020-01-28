@@ -8,11 +8,12 @@ variable region {
 }
 
 variable public_key_path {
+  # Описание переменной
   description = "Path to the public key used for ssh access"
 }
 
-variable disk_image {
-  description = "Disk image"
+variable db_disk_image {
+  description = "Disk image for db"
 }
 
 variable private_key_path {
