@@ -1,0 +1,8 @@
+- name: Update cache && pip Installation
+  apt:
+    update_cache: yes
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - python-pip
+  tags: pip

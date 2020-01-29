@@ -4,8 +4,9 @@ projects:
 zones:
   - europe-west1-b
 groups:
-  app: "'search-engine' in name"
-  db: "'search-engine' in name"
+  app: "'app' in name"
+  db: "'db' in name"
+  ui: "'ui' in name"
 filters: []
 auth_kind: serviceaccount
 service_account_file: "/home/vlad/.gcp/finalproject-266411-0b708c640aa7.json"

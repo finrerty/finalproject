@@ -15,5 +15,13 @@
             "network": "default",
 	        "tags": "{{user `type`}}"
         }
-    ]
+    ],
+    "provisioners": [
+        {
+          "type": "ansible",
+          "playbook_file": "ansible/playbooks/packer_ui.yml",
+          "extra_arguments": ["--tags","pip"],
+          "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"]
+        }
+    ] 
 }

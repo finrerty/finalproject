@@ -1,3 +1,4 @@
+---
 - name: Database packer template configuration
   hosts: all
   become: true

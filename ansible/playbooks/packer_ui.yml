@@ -1,0 +1,5 @@
+- name: UI packer template configuration
+  hosts: all
+  become: true
+  roles:
+    - ui

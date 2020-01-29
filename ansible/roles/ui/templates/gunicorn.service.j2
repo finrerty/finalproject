@@ -1,0 +1,20 @@
+[Unit]
+Description=Gunicorn Server
+After=network.target
+
+[Service]
+PermissionsStartOnly=true
+PIDFile=/run/gunicorn/gunicorn.pid
+EnvironmentFile=/home/{{ deploy_user }}/db_config
+User={{ deploy_user }}
+WorkingDirectory=/home/{{ deploy_user }}/search_engine_ui/ui
+ExecStartPre=/bin/mkdir /run/gunicorn
+ExecStartPre=/bin/chown -R {{ deploy_user }}:{{ deploy_user }} /run/gunicorn
+ExecStart=/usr/bin/env gunicorn ui:app -b 0.0.0.0:8000 --pid /run/gunicorn/gunicorn.pid
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+ExecStopPost=/bin/rm -rf /run/gunicorn
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
