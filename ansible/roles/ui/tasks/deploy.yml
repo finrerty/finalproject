@@ -1,0 +1,9 @@
+- name: Fetch the latest version of UI code
+  git:
+    repo: 'https://github.com/express42/search_engine_ui.git'
+    dest: "/home/{{ deploy_user }}/search_engine_ui"
+  notify: restart gunicorn
+
+- name: Requirements install
+  pip:
+    requirements: "/home/{{ deploy_user }}/search_engine_ui/requirements.txt"

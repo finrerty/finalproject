@@ -1,3 +1,6 @@
 ---
 - name: reload gunicorn
   systemd: name=gunicorn state=reloaded
+
+- name: restart gunicorn
+  systemd: name=gunicorn state=restarted
