@@ -1,0 +1,75 @@
+- name: Install nessesary package
+  apt: 
+      name: apt-transport-https
+      state: present
+      update_cache: yes
+
+- name: Download esl-erlang package
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang/debian/pool/esl-erlang_22.2.6-1~ubuntu~xenial_amd64.deb
+    dest: "/home/{{ deploy_user }}/esl-erlang_22.2.6-1~ubuntu~xenial_amd64.deb"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+    mode: 0755
+
+- name: Install esl-erlang
+  apt:
+    deb: "/home/{{ deploy_user }}/esl-erlang_22.2.6-1~ubuntu~xenial_amd64.deb"
+
+- name: Download erlang solutions
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
+    dest: "/home/{{ deploy_user }}/erlang-solutions_2.0_all.deb"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+    mode: 0755
+
+- name: Install erlang repository
+  apt:
+    deb: "/home/{{ deploy_user }}/erlang-solutions_2.0_all.deb"
+
+- name: fix unmet dependencies
+  shell: apt-get -f install
+
+- name: Delete packages
+  file:
+    path: "/home/{{ deploy_user }}/{{ item }}"
+    state: absent
+  with_items:
+    - esl-erlang_22.2.6-1~ubuntu~xenial_amd64.deb
+    - erlang-solutions_2.0_all.deb
+
+- name: Add an Apt signing key
+  apt_key:
+    url: https://packages.erlang-solutions.com/debian/erlang_solutions.asc
+    state: present
+
+- name: Add rabbit repo
+  shell: echo "deb https://dl.bintray.com/rabbitmq/debian stretch main" | tee /etc/apt/sources.list.d/bintray.rabbitmq.list
+
+- name: add trusted key
+  shell: wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | apt-key add -
+
+- name: install rabbitmq
+  apt: 
+    name: rabbitmq-server
+    state: present
+    update_cache: yes
+
+- name: enable rabbitmq plugins
+  rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled
+  notify:
+    - restart rabbitmq
+
+- name: add rabbitmq users admin
+  rabbitmq_user:
+    user: admin
+    password: superpassword
+    vhost: /
+    tags: administrator
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present

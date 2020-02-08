@@ -1,9 +1,3 @@
-terraform_apply:
-	cd terraform/stage && terraform apply --auto-approve
-
-terraform_destroy:
-	cd terraform/stage && terraform destroy --auto-approve
-
 packer_build_app:
 	packer build --var-file=packer/variables.json packer/app.json
 
@@ -12,6 +6,17 @@ packer_build_ui:
 
 packer_build_db:
 	packer build --var-file=packer/variables.json packer/db.json
+
+packer_build_all: packer_build_app packer_build_ui packer_build_db
+
+terraform_apply:
+	cd terraform/stage && terraform apply --auto-approve
+
+terraform_destroy:
+	cd terraform/stage && terraform destroy --auto-approve
+
+ansible_play_app:
+	cd ansible && ansible-playbook playbooks/app.yml
 
 ansible_play_db:
 	cd ansible && ansible-playbook playbooks/db.yml

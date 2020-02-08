@@ -1,0 +1,9 @@
+- name: Fetch the latest version of APP code
+  git:
+    repo: 'https://github.com/express42/search_engine_crawler.git'
+    dest: "/home/{{ deploy_user }}/search_engine_crawler"
+  notify: 
+
+- name: Requirements install
+  pip:
+    requirements: "/home/{{ deploy_user }}/search_engine_crawler/requirements.txt"

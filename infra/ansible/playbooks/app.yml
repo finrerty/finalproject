@@ -1,0 +1,5 @@
+- name: APP configuration
+  hosts: app
+  become: true
+  roles:
+    - app
