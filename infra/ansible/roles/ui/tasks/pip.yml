@@ -4,5 +4,5 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - python-pip
+    - python3-pip
   tags: pip

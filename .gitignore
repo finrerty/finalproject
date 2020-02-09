@@ -10,5 +10,5 @@ packer/variables.json
 
 #ansible
 *.retry
+rmq_secret.yml
 jdauphant.nginx
-

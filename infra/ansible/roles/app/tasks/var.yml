@@ -1,0 +1,7 @@
+---
+- name: Copy environment.j2 file to etc
+  template:
+    src: environment.j2
+    dest: "/etc/environment"
+    mode: '0644'
+  notify: restart system

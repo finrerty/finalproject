@@ -7,3 +7,4 @@
 - name: Requirements install
   pip:
     requirements: "/home/{{ deploy_user }}/search_engine_ui/requirements.txt"
+    executable: pip3

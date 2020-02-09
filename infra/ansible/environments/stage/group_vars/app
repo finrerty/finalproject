@@ -1,0 +1,2 @@
+db_host: "{{ hostvars['search-engine-db'].ip }}"
+db_port: 27017

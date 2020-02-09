@@ -27,4 +27,7 @@ ansible_play_ui:
 ansible_play_site:
 	cd ansible && ansible-playbook playbooks/site.yml
 
-deploy_site: terraform_apply ansible_play_site
+sleep:
+	sleep 20
+
+deploy_site: terraform_apply sleep ansible_play_site

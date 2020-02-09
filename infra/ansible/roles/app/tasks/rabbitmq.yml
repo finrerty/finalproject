@@ -65,8 +65,8 @@
 
 - name: add rabbitmq users admin
   rabbitmq_user:
-    user: admin
-    password: superpassword
+    user: "{{ rmq_user }}"
+    password: "{{ rmq_password }}"
     vhost: /
     tags: administrator
     configure_priv: .*

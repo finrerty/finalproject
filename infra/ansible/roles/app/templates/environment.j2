@@ -1,0 +1,8 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+MONGO={{ db_host }}
+MONGO_PORT={{ db_port }}
+RMQ_HOST=localhost
+RMQ_USERNAME={{ rmq_user }}
+RMQ_PASSWORD={{ rmq_password }}
+export CHECK_INTERVAL=30
+export RMQ_QUEUE=crawler
