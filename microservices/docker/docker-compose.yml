@@ -1,0 +1,54 @@
+version: '3'
+services:
+  post_db:
+    hostname: post_db
+    image: mongo:${MONGO_VERSION}
+    container_name: mongodb-service
+    volumes:
+      - post_db:/data/db
+    networks:
+      - backend
+    ports:
+      - "${MONGO_PORT}:${MONGO_PORT}"
+  search_engine_ui:
+    hostname: search_engine_ui
+    image: finrerty/ui:${UI_VERSION}
+    environment:
+      - MONGO=post_db
+      - MONGO_PORT=${MONGO_PORT}
+    ports:
+      - "${UI_PORT}:${UI_PORT}"
+    networks:
+      - backend
+  search_engine_crawler:
+    hostname: search_engine_crawler
+    image: finrerty/crawler:${CRAWLER_VERSION}
+    environment:
+      - MONGO=post_db
+      - MONGO_PORT=${MONGO_PORT}
+      - RMQ_HOST=rabbitmq
+      - RMQ_USERNAME=${RMQ_USERNAME}
+      - RMQ_PASSWORD=${RMQ_PASSWORD}
+      - CHECK_INTERVAL=30
+      - RMQ_QUEUE=crawler
+    networks:
+      - backend
+    expose:
+      - "${UI_PORT}"
+  rabbitmq:
+    hostname: rabbitmq
+    container_name: rabbitmq-service
+    image: rabbitmq:${RMQ_VERSION}
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RMQ_USERNAME}
+      - RABBITMQ_DEFAULT_PASS=${RMQ_PASSWORD}
+    networks:
+      - backend
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+volumes:
+  post_db:
+
+networks:
+  backend:

@@ -12,3 +12,6 @@ packer/variables.json
 *.retry
 rmq_secret.yml
 jdauphant.nginx
+
+#docker
+.env
