@@ -6,8 +6,8 @@
 
 С чего начать:
 
-1. [Монолит](Монолит):
-2. [Микросервисы](Микросервисы):
+1. [Монолит](https://github.com/finrerty/finalproject#%D0%BC%D0%BE%D0%BD%D0%BE%D0%BB%D0%B8%D1%82):
+2. [Микросервисы](https://github.com/finrerty/finalproject#%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B):
 
 
 ### Монолит
