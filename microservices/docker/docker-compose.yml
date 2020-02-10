@@ -12,7 +12,7 @@ services:
       - "${MONGO_PORT}:${MONGO_PORT}"
   search_engine_ui:
     hostname: search_engine_ui
-    image: finrerty/ui:${UI_VERSION}
+    image: ${USERNAME}/ui:${UI_VERSION}
     environment:
       - MONGO=post_db
       - MONGO_PORT=${MONGO_PORT}
@@ -22,7 +22,7 @@ services:
       - backend
   search_engine_crawler:
     hostname: search_engine_crawler
-    image: finrerty/crawler:${CRAWLER_VERSION}
+    image: ${USERNAME}/crawler:${CRAWLER_VERSION}
     environment:
       - MONGO=post_db
       - MONGO_PORT=${MONGO_PORT}

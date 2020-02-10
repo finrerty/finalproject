@@ -1,8 +1,10 @@
+USERNAME = finrerty
+
 build_ui:
-	cd ui && docker build -t finrerty/ui:latest .
+	cd ui && docker build -t $(USERNAME)/ui:latest .
 
 build_crawler:
-	cd crawler && docker build -t finrerty/crawler:latest .
+	cd crawler && docker build -t $(USERNAME)/crawler:latest .
 
 docker_compose_up:
 	cd docker && docker-compose up -d
