@@ -38,7 +38,7 @@ make terraform_destroy
 3. В файл .env ставим такое же имя пользователя, какое было установлено в пункте 1. Так же устанавливаем логин и пароль для RabbitMQ. Остальные параметры стоит изменять только в случае крайней необходимости
 4. Переходим в папку microservices и выполняем команду
 ```
-make deploy_app
+make docker_deploy_app
 ```
 5. UI будет доступен по IP-адресу клиента, на котором выполнялись пункты 1-4 на порту UI_PORT, указанном в файле microservices/docker/.env
 
@@ -77,4 +77,17 @@ $ eval $(docker-machine env docker-host)
 Для остановки всех контейнеров приложения можно использовать команду
 ```
 make docker_compose_down
+```
+
+#### Разворот приложения локально с помощью kubernetes
+1. При запущенном minikube выполняем команду
+```
+make kubernetes_apply
+```
+
+#### Разворот приложения в GCP с помощью kubernetes
+1. Заходим в папку microservices/kubernetes/terraform. Переименовываем terraform.tfvars.example в terraform.tfvars. Указываем свой проект.
+2. Заходим в Makefile и так же указываем своё название проекта. Выполняем команду
+```
+make kubernetes_deploy_app
 ```

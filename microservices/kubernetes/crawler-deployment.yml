@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crawler
+  labels:
+    app: search-engine
+    component: crawler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-engine
+      component: crawler
+  template:
+    metadata:
+      name: crawler
+      labels:
+        app: search-engine
+        component: crawler
+    spec:
+      containers:
+      - image: finrerty/crawler
+        name: crawler
+        env:
+        - name: MONGO
+          value: post-db
+        - name: MONGO_PORT
+          value: "27017"
+        - name: RMQ_HOST
+          value: rabbitmq
+        - name: RMQ_USERNAME
+          value: admin
+        - name: RMQ_PASSWORD
+          value: superpassword
+        - name: CHECK_INTERVAL
+          value: "30"
+        - name: RMQ_QUEUE
+          value: crawler
+
