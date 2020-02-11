@@ -16,11 +16,14 @@
 1. В папке infra/packer переименовать файл variables.json.example в variables.json и указать свои данные.
 2. В папке infra/terraform/stage переименовать файл terraform.tfvars.example в terraform.tfvars, указать ваше имя проекта в GCP, путь к публичному ключу и приватному ключу.
 3. В файле infra/ansible/environments/stage/inventory.gcp.yml указать свой проект и путь к service_account_file
-4. Перейти в папку monolith и выполнить команду
+4. В папке /ansible/environments/stage/inventory.gcp.yml указать свой проект и путь к service_accoun$
+4. В папке infra/ansible/roles/app/vars/main переименовать файл rmq_secret.yml.example в rmq_secret.yml, указать свои логин-пароль для RabbitMQ
+
+5. Перейти в папку infra и выполнить команду
 ```
 make deploy_site
 ```
-5. UI будет доступен по адресу, который выведет terraform под именем ui_external_ip на порту 8000
+6. UI будет доступен по адресу, который выведет terraform под именем ui_external_ip на порту 8000
 
 Для удаления всех компонентов приложения из вашего облачного сервиса можно использовать команду
 ```
@@ -28,7 +31,10 @@ make terraform_destroy
 ```
 
 #### Разворот приложения локально с помощью Vagrant
-
+1. В папке infra необходимо выполнить команду
+```
+make Vagrant up
+```
 
 ### Микросервисы
 

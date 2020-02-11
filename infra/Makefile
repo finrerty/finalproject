@@ -1,3 +1,9 @@
+vagrant_up:
+	cd ansible && vagrant up
+
+vagrant_destroy:
+	cd ansible && vagrant destroy
+
 packer_build_app:
 	packer build --var-file=packer/variables.json packer/app.json
 

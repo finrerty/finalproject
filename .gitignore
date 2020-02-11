@@ -15,3 +15,9 @@ jdauphant.nginx
 
 #docker
 .env
+
+#vagrant
+.vagrant/
+*.log
+*.pyc
+.cache
