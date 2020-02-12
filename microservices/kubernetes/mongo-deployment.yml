@@ -6,7 +6,8 @@ metadata:
   labels:
     app: search-engine
     component: mongo
-    post_db: "true"
+    post-db: "true"
+    ui-db: "true"
 spec:
   replicas: 1
   selector:
@@ -19,7 +20,8 @@ spec:
       labels:
         app: search-engine
         component: mongo
-        post_db: "true"
+        post-db: "true"
+        ui-db: "true"
     spec:
       containers:
       - image: mongo:latest

@@ -7,13 +7,22 @@ build_ui:
 build_crawler:
 	cd crawler && docker build -t $(USERNAME)/crawler:latest .
 
+build_fluentd:
+	cd logging/fluentd/ && docker build -t $(USERNAME)/fluentd:latest .
+
+docker_compose_up_logging:
+	cd docker && docker-compose -f docker-compose-logging.yml up -d
+
+docker_compose_down_logging:
+	cd docker && docker-compose -f docker-compose-logging.yml down
+
 docker_compose_up:
 	cd docker && docker-compose up -d
 
 docker_compose_down:
 	cd docker && docker-compose down
 
-docker_deploy_app: build_ui build_crawler docker_compose_up
+docker_deploy_app: build_ui build_crawler build_fluentd docker_compose_up_logging docker_compose_up
 
 terraform_create_kubernetes_cluster:
 	cd kubernetes/terraform && terraform apply --auto-approve

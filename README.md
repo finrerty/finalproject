@@ -48,9 +48,10 @@ make docker_deploy_app
 ```
 5. UI будет доступен по IP-адресу клиента, на котором выполнялись пункты 1-4 на порту UI_PORT, указанном в файле microservices/docker/.env
 
-Для остановки всех контейнеров приложения можно использовать команду
+Для остановки всех контейнеров приложения можно использовать команды
 ```
 make docker_compose_down
+make docker_compose_down_logging
 ```
 
 #### Разворот приложения на удалённой docker-machine (на примере GCP)
@@ -83,6 +84,7 @@ $ eval $(docker-machine env docker-host)
 Для остановки всех контейнеров приложения можно использовать команду
 ```
 make docker_compose_down
+make docker_compose_down_logging
 ```
 
 #### Разворот приложения локально с помощью kubernetes
@@ -96,4 +98,16 @@ make kubernetes_apply
 2. Заходим в Makefile и так же указываем своё название проекта. Выполняем команду
 ```
 make kubernetes_deploy_app
+```
+
+### Логирование
+
+На данном этапе система логирования доступна при использовании для разворота приложения способов с docker и docker-machine  
+После создания инструменты доступны по следующим портам
+```
+#Kibana
+localhost:5601/docker-machine:5601
+
+#Zipkin
+localhost:9411/docker-machine:9411
 ```

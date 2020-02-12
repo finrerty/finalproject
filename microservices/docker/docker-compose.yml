@@ -16,8 +16,14 @@ services:
     environment:
       - MONGO=post_db
       - MONGO_PORT=${MONGO_PORT}
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     ports:
       - "${UI_PORT}:${UI_PORT}"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
     networks:
       - backend
   search_engine_crawler:
@@ -31,6 +37,12 @@ services:
       - RMQ_PASSWORD=${RMQ_PASSWORD}
       - CHECK_INTERVAL=30
       - RMQ_QUEUE=crawler
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.crawler
     networks:
       - backend
     expose:
