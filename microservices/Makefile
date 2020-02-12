@@ -10,6 +10,12 @@ build_crawler:
 build_fluentd:
 	cd logging/fluentd/ && docker build -t $(USERNAME)/fluentd:latest .
 
+docker_compose_up_monitoring:
+        cd docker && docker-compose -f docker-compose-monitoring.yml up -d
+
+docker_compose_down_monitoring:
+        cd docker && docker-compose -f docker-compose-monitoring.yml down
+
 docker_compose_up_logging:
 	cd docker && docker-compose -f docker-compose-logging.yml up -d
 
@@ -22,7 +28,7 @@ docker_compose_up:
 docker_compose_down:
 	cd docker && docker-compose down
 
-docker_deploy_app: build_ui build_crawler build_fluentd docker_compose_up_logging docker_compose_up
+docker_deploy_app: build_ui build_crawler build_fluentd docker_compose_up_logging docker_compose_up docker_compose_up_monitoring
 
 terraform_create_kubernetes_cluster:
 	cd kubernetes/terraform && terraform apply --auto-approve

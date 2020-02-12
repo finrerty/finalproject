@@ -102,12 +102,24 @@ make kubernetes_deploy_app
 
 ### Логирование
 
-На данном этапе система логирования доступна при использовании для разворота приложения способов с docker и docker-machine  
+На данном этапе система логирования доступна при использовании способа с docker и docker-machine для разворота приложения  
 После создания инструменты доступны по следующим портам
 ```
-#Kibana
+####Kibana
 localhost:5601/docker-machine:5601
 
-#Zipkin
+####Zipkin
 localhost:9411/docker-machine:9411
+```
+
+### Мониторинг
+
+Система мониторинга так же доступна при использования способа с docker и docker-machine
+После создания инструменты доступны по следующим портам
+```
+####prometheus
+localhost:9000/docker-machine:9000
+
+####graphana
+localhost:3000/docker-machine:3000
 ```
