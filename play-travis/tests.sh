@@ -19,3 +19,15 @@ cd terraform/stage
 terraform get && terraform init
 tflint
 terraform validate
+
+#Install Ansible-lint
+cd ../..
+sudo pip install ansible-lint
+
+#Ansible
+ansible-lint -x 401 ansible_playbooks/*
+
+#Vagrant
+cd ansible
+vagrant validate
+cd ..
