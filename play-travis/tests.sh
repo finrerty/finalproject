@@ -30,11 +30,20 @@ ansible-lint -x 401 ansible/playbooks/*
 #Install Vagrant
 sudo apt-get update -q
 sudo apt-get install -q virtualbox --fix-missing
-sudo wget -nv https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
-sudo dpkg -i vagrant_1.7.2_x86_64.deb
-bundle install
+sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb
+sudo dpkg -i vagrant_2.2.7_x86_64.deb
 
 #Vagrant
 cd ansible
 vagrant validate
+cd ../..
+
+#Install Docker linter
+git clone https://github.com/hadolint/hadolint
+cd hadolint
+stack install
 cd ..
+
+#Docker tests
+hadolint microservices/crawler/Dockerfile
+hadolint microservices/ui/Dockerfile
