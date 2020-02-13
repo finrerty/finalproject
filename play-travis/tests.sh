@@ -28,7 +28,11 @@ sudo pip install ansible-lint
 ansible-lint -x 401 ansible/playbooks/*
 
 #Install Vagrant
-sudo apt-get install vagrant
+sudo apt-get update -q
+sudo apt-get install -q virtualbox --fix-missing
+sudo wget -nv https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
+sudo dpkg -i vagrant_1.7.2_x86_64.deb
+bundle install
 
 #Vagrant
 cd ansible
