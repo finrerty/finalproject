@@ -25,7 +25,10 @@ cd ../..
 sudo pip install ansible-lint
 
 #Ansible
-ansible-lint -x 401 ansible_playbooks/*
+ansible-lint -x 401 ansible/playbooks/*
+
+#Install Vagrant
+sudo apt-get install vagrant
 
 #Vagrant
 cd ansible
