@@ -28,6 +28,7 @@ sudo pip install ansible-lint
 ansible-lint -x 401 ansible/playbooks/*
 
 #Install Docker linter
+sudo wget -qO- https://get.haskellstack.org/ | sh
 git clone https://github.com/hadolint/hadolint
 cd hadolint
 stack install
