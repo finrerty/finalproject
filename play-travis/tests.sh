@@ -32,7 +32,7 @@ sudo wget -qO- https://get.haskellstack.org/ | sh
 git clone https://github.com/hadolint/hadolint
 cd hadolint
 stack install
-cd ..
+cd ../..
 
 #Docker tests
 hadolint microservices/crawler/Dockerfile
