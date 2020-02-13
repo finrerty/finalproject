@@ -29,6 +29,7 @@ ansible-lint -x 401 ansible/playbooks/*
 
 #Install Vagrant
 sudo apt-get update -q
+sudo apt-get install linux-generic linux-image-generic linux-headers-generic linux-signed-generic
 sudo apt-get install -q virtualbox --fix-missing
 sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb
 sudo dpkg -i vagrant_2.2.7_x86_64.deb
