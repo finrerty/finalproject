@@ -35,5 +35,8 @@ stack install
 cd ../..
 
 #Docker tests
-hadolint microservices/crawler/Dockerfile
-hadolint microservices/ui/Dockerfile
+hadolint --ignore DL3018 --ignore DL3019 microservices/crawler/Dockerfile
+hadolint --ignore DL3018 --ignore DL3019 microservices/ui/Dockerfile
+hadolint --ignore DL3018 --ignore DL3019 microservices/logging/fluentd/Dockerfile
+hadolint --ignore DL3018 --ignore DL3019 microservices/monitoring/alertmanager/Dockerfile
+hadolint --ignore DL3018 --ignore DL3019 microservices/monitoring/prometheus/Dockerfile
